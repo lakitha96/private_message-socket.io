@@ -85,28 +85,17 @@
 
         socket.on('new-message',function(data){
             $chat.append('<small>' + data.username + '</small>: ' + data.msg + '<br>')
-            $typing.text('');
         });
 
         socket.on('private-message',function(data){
             $chat.append('<div id="private"> <small>' + data.username + '</small>: ' + data.msg + '<br></div>')
-            $typing.text('');
         });
 
-        document.getElementById("message").addEventListener('keypress', function(){
-            socket.emit('user-typing',$message.val(), function(data){
-                console.log("typing....");
+        $message.addEventListener('keypass', function(){
+            socket.on('user-typing',function(data){
+                $typing.replaceAll(data + " is typing....");
             });
         });
-
-        socket.on('is-typing',function(data){
-            $typing.text(data + " is typing....");
-            console.log(data + " is typing....");
-        });
-
-        // document.getElementById("message").addEventListener('keydown', function(){
-        //     $typing.text('');
-        // });
 
         
 

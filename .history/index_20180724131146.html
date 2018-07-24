@@ -18,11 +18,11 @@
 
         #private{
             font-style: italic;
-            color: blue;
+            color: red;
         }
 
         #error{
-            color: red;
+            color: 
         }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -50,7 +50,6 @@
     <div id="chatWrap">
         <div id="chat"></div>
         <form class="forms" id="messageForm">
-            <p id="typing"></p>
             <input class="text" size="35" id="message">
             <input class="btn btn-success" type="submit">
             <small> **for private msgs - "/p __space__ [username] __space__ [private msg]" </small>
@@ -72,7 +71,6 @@
         var $nickWrap = $('#nickWrap');
         var $contentWrap = $('#contentWrap');
         var $users = $('#users');
-        var $typing = $('#typing');
     
 
         $messageForm.submit(function (e){
@@ -85,30 +83,11 @@
 
         socket.on('new-message',function(data){
             $chat.append('<small>' + data.username + '</small>: ' + data.msg + '<br>')
-            $typing.text('');
         });
 
         socket.on('private-message',function(data){
             $chat.append('<div id="private"> <small>' + data.username + '</small>: ' + data.msg + '<br></div>')
-            $typing.text('');
         });
-
-        document.getElementById("message").addEventListener('keypress', function(){
-            socket.emit('user-typing',$message.val(), function(data){
-                console.log("typing....");
-            });
-        });
-
-        socket.on('is-typing',function(data){
-            $typing.text(data + " is typing....");
-            console.log(data + " is typing....");
-        });
-
-        // document.getElementById("message").addEventListener('keydown', function(){
-        //     $typing.text('');
-        // });
-
-        
 
         $nickForm.submit(function(e){
             e.preventDefault();

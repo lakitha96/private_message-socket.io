@@ -40,11 +40,6 @@ var express = require('express'),
         updateNicknames();
     });
 
-    // typing
-    socket.on('user-typing', function(data, callback){
-        socket.broadcast.emit('is-typing', socket.nicknames);
-    })
-
 
     // message
     socket.on('send-message', function(data, callback){
@@ -64,12 +59,13 @@ var express = require('express'),
                 }
                 console.log('private...');
             }else{
-                callback('Error...! Please enter valid username...');
+                callback('Error...! Please enter valid name of private message partner...');
             }
             
         }else{
             io.sockets.emit('new-message', {msg: msg, username: socket.nicknames});
         }
+        
+        // sockets.broadcast.emit('new message', data);
     });
-
 });

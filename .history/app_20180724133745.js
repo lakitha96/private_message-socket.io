@@ -40,11 +40,6 @@ var express = require('express'),
         updateNicknames();
     });
 
-    // typing
-    socket.on('user-typing', function(data, callback){
-        socket.broadcast.emit('is-typing', socket.nicknames);
-    })
-
 
     // message
     socket.on('send-message', function(data, callback){

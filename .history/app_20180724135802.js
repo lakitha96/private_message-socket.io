@@ -41,8 +41,9 @@ var express = require('express'),
     });
 
     // typing
-    socket.on('user-typing', function(data, callback){
-        socket.broadcast.emit('is-typing', socket.nicknames);
+    socket.on('user-typing', function(data){
+        socket.brboadcast.emit('user-typing', socket.username);
+        console.log("typing");
     })
 
 

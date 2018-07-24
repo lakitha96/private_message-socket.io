@@ -85,12 +85,10 @@
 
         socket.on('new-message',function(data){
             $chat.append('<small>' + data.username + '</small>: ' + data.msg + '<br>')
-            $typing.text('');
         });
 
         socket.on('private-message',function(data){
             $chat.append('<div id="private"> <small>' + data.username + '</small>: ' + data.msg + '<br></div>')
-            $typing.text('');
         });
 
         document.getElementById("message").addEventListener('keypress', function(){
@@ -100,13 +98,10 @@
         });
 
         socket.on('is-typing',function(data){
-            $typing.text(data + " is typing....");
+            $typing.text.(data + " is typing....");
+            $typing.val('');
             console.log(data + " is typing....");
         });
-
-        // document.getElementById("message").addEventListener('keydown', function(){
-        //     $typing.text('');
-        // });
 
         
 
