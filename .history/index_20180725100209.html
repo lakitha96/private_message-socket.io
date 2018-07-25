@@ -35,12 +35,7 @@
         }
 
         #typing{
-            font-style: italic;
-            color: #03A9F4;
-        }
-
-        #online{
-            
+            font-sty
         }
         
     </style>
@@ -64,26 +59,19 @@
             <input class="btn btn-primary" type="submit">
         </form>
     </div>
-    
-<div id="contentWrap" class="container">
-    <div class="row">
-        <div id="chatWrap" class="col-md-8">        
-            <div class="chat" id="chat"></div>
-            <form class="forms" id="messageForm">
-                <p id="typing"></p>
-                <input class="text" size="30" id="message">
-                <input class="btn btn-success" type="submit"><hr>
-                <small> **for private msgs - "/p __space__ [username] __space__ [private msg]" </small><br>
-            </form>
-        </div>
 
-        <div id="online" class="col-md-4">
-            <div class="well">
-                <h5>online users</h5>
-                <ul class="list-group" id="users"></ul>
-            </div>
-        </div>
+<div id="contentWrap" class="container">
+    <div id="chatWrap">        
+        <small> **for private msgs - "/p __space__ [username] __space__ [private msg]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" </small><br>
+        <div class="chat" id="chat"></div>
+        <form class="forms" id="messageForm">
+            <p id="typing"></p>
+            <input class="text" size="30" id="message">
+            <input class="btn btn-success" type="submit">
+        </form>
     </div>
+    <h5 id="online">online users</h5>
+    <div id="users"></div>
 </div>
 
     <!-- ################################################ -->

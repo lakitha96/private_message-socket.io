@@ -3,9 +3,9 @@
 <head>
     <title>Private Chat Socket.io</title>
     <style>
-        /* #chat {
+        #chat {
             height: 500px;
-        } */
+        }
 
         #contentWrap{
             display: none;
@@ -21,28 +21,9 @@
             color: blue;
         }
 
-        #error, #nickError{
+        #error{
             color: red;
         }
-
-        #join{
-            color: gray;
-        }
-
-        #left{
-            color: burlywood;
-            font-style: italic;
-        }
-
-        #typing{
-            font-style: italic;
-            color: #03A9F4;
-        }
-
-        #online{
-            
-        }
-        
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -64,26 +45,18 @@
             <input class="btn btn-primary" type="submit">
         </form>
     </div>
-    
-<div id="contentWrap" class="container">
-    <div class="row">
-        <div id="chatWrap" class="col-md-8">        
-            <div class="chat" id="chat"></div>
-            <form class="forms" id="messageForm">
-                <p id="typing"></p>
-                <input class="text" size="30" id="message">
-                <input class="btn btn-success" type="submit"><hr>
-                <small> **for private msgs - "/p __space__ [username] __space__ [private msg]" </small><br>
-            </form>
-        </div>
 
-        <div id="online" class="col-md-4">
-            <div class="well">
-                <h5>online users</h5>
-                <ul class="list-group" id="users"></ul>
-            </div>
-        </div>
+<div id="contentWrap" class="container">
+    <div id="chatWrap">
+        <div id="chat"></div>
+        <form class="forms" id="messageForm">
+            <p id="typing"></p>
+            <input class="text" size="30" id="message">
+            <input class="btn btn-success" type="submit">
+            <small> **for private msgs - "/p __space__ [username] __space__ [private msg]" </small>
+        </form>
     </div>
+    <div id="users"></div>
 </div>
 
     <!-- ################################################ -->
@@ -112,15 +85,12 @@
         });
 
         socket.on('user-joined',function(data){
-            $chat.append('<div id="join"> <small>--------------- '+data+' has joined ---------------</small></div>');
-        });
-
-        socket.on('user-left',function(data){
-            $chat.append('<div id="left"> <small>'+data+' left...</small></div>');
+            $chat.append('<div id="private"> <small>' + data.username + '</small>: ' + data.msg + '<br></div>')
+            $typing.text('');
         });
 
         socket.on('new-message',function(data){
-            $chat.append('<small>' + data.username + '</small>: ' + data.msg + '<br>')
+            $chat.append('<div>''</div>')
             $typing.text('');
         });
 

@@ -25,6 +25,7 @@ var express = require('express'),
                 // save socket to the user
                 users[socket.nicknames] = socket;
                 updateNicknames();
+                console.log('--------------' +data+ ' joined--------------');
                 var joinMsg = data + ' has joined....';
                 io.sockets.emit('user-joined', data);
             }

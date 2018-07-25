@@ -25,20 +25,20 @@ var express = require('express'),
                 // save socket to the user
                 users[socket.nicknames] = socket;
                 updateNicknames();
-                var joinMsg = data + ' has joined....';
-                io.sockets.emit('user-joined', data);
+                console.log('--------------' +data+ ' joined--------------');            
             }
         });
 
         // update users
         function updateNicknames(){
             io.sockets.emit('usernames', Object.keys(users));
+            
         };
 
         // disconnect
         socket.on('disconnect', function(data){
             if(!socket.nicknames) return;
-            io.sockets.emit('user-left', socket.nicknames);           
+            console.log(socket.nicknames+ ' left--------------');            
             delete users[socket.nicknames];
             updateNicknames();
         });
